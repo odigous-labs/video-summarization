@@ -24,19 +24,23 @@ def get_frames(video_input_path, frame_output_path):
     try:
         if not os.path.exists(frame_output_path):
             os.makedirs(frame_output_path)
-
     except OSError:
-        print ('Error: Creating directory of data')
+        print('Error: Creating directory of data')
+
+    # Capture the very first frame
+    return_status, frame = video_capture.read()
 
     current_frame = 0
-    while(True):
-        # Capture frame-by-frame
-        ret, frame = video_capture.read()
+
+    while(return_status):
 
         # Saving the current frame's image as a jpg file
         frame_location = frame_output_path+"frame" + str(current_frame) + ".jpg"
         print ("Creating..." + frame_location)
         cv2.imwrite(frame_location, frame)
+
+        # Capture frame-by-frame
+        return_status, frame = video_capture.read()
 
         # Increasing the current frame value for the next frame
         current_frame += 1
