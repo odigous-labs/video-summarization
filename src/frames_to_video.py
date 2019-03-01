@@ -17,36 +17,42 @@ import os
 from os.path import isfile, join
 
 def convert_frames_to_video(input_frames_path, output_video_path, fps):
-    frame_array = []
-    files = [file for file in os.listdir(input_frames_path) if isfile(join(input_frames_path, file))]
 
-    # Sort the frames order relevant to the name
-    files.sort(key=lambda x: int(x[5:-4]))
+    if (os.path.isdir(input_frames_path)):
 
-    if(len(files)!=0):
-        for i in range(len(files)):
-            # reading image files
-            filename = input_frames_path + files[i]
-            img = cv2.imread(filename)
-            height, width, layers = img.shape
-            size = (width, height)
-            print(filename)
+        frame_array = []
 
-            # inserting the current frame into the frame array
-            frame_array.append(img)
+        files = [file for file in os.listdir(input_frames_path) if isfile(join(input_frames_path, file))]
 
-        # Initiate the output video file
-        out = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
+        # Sort the frames order by the name
+        files.sort(key=lambda x: int(x[5:-4]))
 
-        for i in range(len(frame_array)):
-            # writing to a image array
-            out.write(frame_array[i])
-        out.release()
+        if(len(files)!=0):
+            for i in range(len(files)):
+                # reading image files
+                filename = input_frames_path + files[i]
+                img = cv2.imread(filename)
+                height, width, layers = img.shape
+                size = (width, height)
+                print(filename)
+
+                # inserting the current frame into the frame array
+                frame_array.append(img)
+
+            # Initiate the output video file
+            out = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
+
+            for i in range(len(frame_array)):
+                # writing to a image array
+                out.write(frame_array[i])
+            out.release()
+        else:
+            print("Need to include frames in the required format within the given location of frames.")
     else:
-        print("Need to include frames in the required format within the given location of frames.")
+        print("Given path of the frames not exists.")
 
 def run():
-    input_frames_path = "./data/generated_frames/"
+    input_frames_path = "./data/generated_frame/"
     output_video_path = "./data/output_video/output_video.avi"
     fps = 25.0
     convert_frames_to_video(input_frames_path, output_video_path, fps)
