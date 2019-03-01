@@ -24,24 +24,27 @@ def convert_frames_to_video(input_frames_path, output_video_path, fps):
     # Sort the frames order relevant to the name
     files.sort(key=lambda x: int(x[5:-4]))
 
-    for i in range(len(files)):
-        # reading image files
-        filename = input_frames_path + files[i]
-        img = cv2.imread(filename)
-        height, width, layers = img.shape
-        size = (width, height)
-        print(filename)
+    if(len(files)!=0):
+        for i in range(len(files)):
+            # reading image files
+            filename = input_frames_path + files[i]
+            img = cv2.imread(filename)
+            height, width, layers = img.shape
+            size = (width, height)
+            print(filename)
 
-        # inserting the current frame into the frame array
-        frame_array.append(img)
+            # inserting the current frame into the frame array
+            frame_array.append(img)
 
-    # Initiate the output video file
-    out = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
+        # Initiate the output video file
+        out = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
 
-    for i in range(len(frame_array)):
-        # writing to a image array
-        out.write(frame_array[i])
-    out.release()
+        for i in range(len(frame_array)):
+            # writing to a image array
+            out.write(frame_array[i])
+        out.release()
+    else:
+        print("Need to include frames in the required format within the given location of frames.")
 
 def run():
     input_frames_path = "./data/generated_frames/"
