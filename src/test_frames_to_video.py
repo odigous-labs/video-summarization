@@ -18,9 +18,10 @@ import frames_to_video
 
 def run():
     input_frames_path = "./data/generated_frames/"
-    output_video_path = "./data/output_video/output_video.avi"
+    output_video_path = "./data/output_video/"
+    output_video_name = "output_video.avi"
     fps = 25.0
-    frames_to_video.convert_frames_to_video(input_frames_path, output_video_path, fps)
+    frames_to_video.convert_frames_to_video(input_frames_path, output_video_path, output_video_name, fps)
 
 if __name__ == "__main__":
     run()
