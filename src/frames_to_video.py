@@ -13,7 +13,6 @@ If need to use this script within another code then can import the script and ca
 '''
 
 import cv2
-import numpy as np
 import os
 from os.path import isfile, join
 

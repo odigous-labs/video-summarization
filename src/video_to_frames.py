@@ -13,7 +13,6 @@ If need to use this script within another code then can import the scirpt and ca
 '''
 
 import cv2
-import numpy as np
 import os
 
 def get_frames(video_input_path, frame_output_path):
