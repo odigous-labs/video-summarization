@@ -20,9 +20,6 @@ import os
 
 def generate_object_list_of_frames(input_frames_path,img_width, img_height):
 
-    if not (os.path.isdir(input_frames_path)):
-        return 1
-
     images = []                       # List to keep scaled frame data
     frame_names = []                  # List to keep names of frames
 
@@ -60,7 +57,7 @@ def generate_object_list_of_frames(input_frames_path,img_width, img_height):
 
 def run():
     # image folder
-    input_frames_path = "./data/generated_frame/"
+    input_frames_path = "./data/generated_frames/"
 
     # dimensions of images
     img_width, img_height = 224, 224

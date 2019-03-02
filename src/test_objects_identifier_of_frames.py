@@ -18,7 +18,7 @@ import objects_identifier_of_frames
 
 def run():
     # image folder
-    input_frames_path = "./data/generated_framess/"
+    input_frames_path = "./data/generated_frames/"
 
     # dimensions of images
     img_width, img_height = 224, 224
