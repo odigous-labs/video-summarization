@@ -48,7 +48,7 @@ def generate_object_list_of_frames(input_frames_path,img_width, img_height):
         for imagenet_id, name, likelihood in i:
             #print(" - {}: {:2f} likelihood".format(name, likelihood))
             #if(likelihood>20):
-            object_list.append((name,likelihood))
+            object_list.append(name)
 
         frames_predictions_dictionary[frame_names[index]] = object_list
         index += 1
