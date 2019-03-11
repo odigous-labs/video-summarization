@@ -61,6 +61,7 @@ def run():
         copyfile(source, destination)
 
     print("\n**************** Keyframes moved to the ./test_data/generated_summary_keyframes/ location ****************")
-    elapsed_time = datetime.datetime.now() -
+    elapsed_time = datetime.datetime.now() - t1
+    print ("elapsed time is "+str(elapsed_time))
 if __name__ == "__main__":
     run()
