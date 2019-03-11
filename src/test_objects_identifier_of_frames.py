@@ -15,15 +15,19 @@ As done in the this testing script, can use the objects_identifier_of_frames.py 
 '''
 
 import objects_identifier_of_frames
+import datetime;
 
 def run():
     # image folder
-    input_frames_path = "./data/generated_frames/"
+    input_frames_path = "./test_data/generated_frames/"
 
     # dimensions of images
     img_width, img_height = 224, 224
+    t1 = datetime.datetime.now()
     frames_predictions_dictionary = objects_identifier_of_frames.generate_object_list_of_frames(input_frames_path, img_width, img_height )
-
+    t2 = datetime.datetime.now()
+    elapsedtime = t2-t1
+    print("elapsed time is"+str(elapsedtime))
     for the_key, the_value in frames_predictions_dictionary.items():
         print(the_key, ' ---> ', the_value)
 

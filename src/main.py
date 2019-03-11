@@ -3,10 +3,11 @@ import objects_identifier_of_frames
 import os
 import glob
 import summary_from_frame_list
+import datetime
 from shutil import copyfile
 
 def run():
-
+    t1 = datetime.datetime.now()
     print("**************** Give the details of the video which need to summarise ****************\n")
 
     original_video_location = input("Enter the video path (Ex: ./data/input_video/input_video.mp4) :\n")
@@ -60,6 +61,6 @@ def run():
         copyfile(source, destination)
 
     print("\n**************** Keyframes moved to the ./test_data/generated_summary_keyframes/ location ****************")
-
+    elapsed_time = datetime.datetime.now() -
 if __name__ == "__main__":
     run()
