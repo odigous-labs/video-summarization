@@ -2,7 +2,7 @@ import video_to_frames
 import objects_identifier_of_frames
 import os
 import glob
-import summary_from_frame_list
+import summary_from_frames_with_obj
 import datetime
 from shutil import copyfile
 
@@ -38,7 +38,7 @@ def run():
 
     print(object_identified_dictionary)
 
-    summary_frame_name_list = summary_from_frame_list.summary_from_frame_list(object_identified_dictionary, 10)
+    summary_frame_name_list = summary_from_frames_with_obj.summary_from_frames_with_obj(object_identified_dictionary)
 
     print("\n**************** Keyframe identities of the Summary ****************")
 

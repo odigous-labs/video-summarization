@@ -32,8 +32,9 @@ class YOLO(object):
 
         for f in tqdm(fnames, desc='Processing Batch'):
             image = cv2.imread(f)
-            labels = []
             labels = self.inf_model.predict(image.copy())
+            test = len(labels)
+            #type = type(labels)
             frames_predictions_dictionary[str(f)[len(path_to_frames):]] = labels
 
         print ("Object Identification Process Finished")

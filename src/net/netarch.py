@@ -48,7 +48,8 @@ class YoloInferenceModel(object):
         output = self._inf_model.predict(image)[0]
 
         if output.size == 0:
-            return [np.array([])]*4
+            list1 = []
+            return list1
 
 
         label_idxs = output[:,5].astype(int)
