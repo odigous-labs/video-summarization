@@ -14,32 +14,27 @@ class YOLO(object):
         self.model = self.yolo_arch.get_model()
         self.inf_model = YoloInferenceModel(self.model)
 
-    def predict(self,path):
+
+    def predict(self, path_to_frames):
+
+        #this function will return a dictionary with predicted objects as follows
+        #{frame0:[obj1,obj2,obj3],frame1:[obj1,obj2]....}
+
         frames_predictions_dictionary = {}
         #checking whether the given path is a directory
-        if os.path.isdir(path):
-            fnames = [os.path.join(path, f) for f in os.listdir(path)
-                      if os.path.isfile(os.path.join(path, f))]
+        if os.path.isdir(path_to_frames):
+            fnames = [os.path.join(path_to_frames, f) for f in os.listdir(path_to_frames)
+                      if os.path.isfile(os.path.join(path_to_frames, f))]
 
         else:
-            fnames = [path]
+            fnames = [path_to_frames]
             flag = False
 
         for f in tqdm(fnames, desc='Processing Batch'):
             image = cv2.imread(f)
-            labels_limited = [None]*10
+            labels = []
             labels = self.inf_model.predict(image.copy())
-            size = len(labels)
-            for i in range(size):
-                if(i==10):
-                    break
-                labels_limited[i] = labels[i]
-            test = str(f)[len(path):]
-            frames_predictions_dictionary[str(f)[len(path):]] = labels_limited
-            print (labels_limited)
+            frames_predictions_dictionary[str(f)[len(path_to_frames):]] = labels
 
-
-
-
-        print ("Process Finished")
+        print ("Object Identification Process Finished")
         return frames_predictions_dictionary
