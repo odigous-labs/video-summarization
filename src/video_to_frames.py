@@ -32,20 +32,21 @@ def get_frames(video_input_path, frame_output_path):
         return_status, frame = video_capture.read()
 
         current_frame = 0
-
+        counter = 0
         while(return_status):
 
-            # Saving the current frame's image as a jpg file
-            frame_location = frame_output_path+"frame" + str(current_frame) + ".jpg"
-            print ("Creating..." + frame_location)
-            cv2.imwrite(frame_location, frame)
+            if(counter==4):
+                # Saving the current frame's image as a jpg file
+                frame_location = frame_output_path+"frame" + str(current_frame) + ".jpg"
+                print ("Creating..." + frame_location)
+                cv2.imwrite(frame_location, frame)
+                # Increasing the current frame value for the next frame
+                current_frame += 1
+                counter = 0
 
             # Capture frame-by-frame
             return_status, frame = video_capture.read()
-
-            # Increasing the current frame value for the next frame
-            current_frame += 1
-
+            counter +=1
         # Release the capture
         video_capture.release()
         cv2.destroyAllWindows()
