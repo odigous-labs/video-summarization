@@ -4,9 +4,9 @@ import cv2
 import natsort
 import numpy as np
 from tqdm import tqdm
-from src.centroid_tracker.centroidtracker import CentroidTracker
+from centroid_tracker.centroidtracker import CentroidTracker
 
-from src.net.netarch import YoloArchitecture, YoloInferenceModel
+from net.netarch import YoloArchitecture, YoloInferenceModel
 
 
 class YOLO(object):
