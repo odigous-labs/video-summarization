@@ -51,12 +51,12 @@ class YoloInferenceModel(object):
             list1 = []
             return list1
 
-
+        boxes = output[:, :4]
         label_idxs = output[:,5].astype(int)
 
         labels = [YoloParams.CLASS_LABELS[l] for l in label_idxs]
 
-        return labels
+        return boxes, labels
 
 
 
