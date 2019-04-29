@@ -3,11 +3,12 @@ import glob
 import datetime
 from shutil import copyfile
 
-import video_to_frames
+import video_to_frames_no_skipping
 from frame_seperater import FrameSeperator
 import create_shot_boundaries
 import objects_identifier_of_frames
 import summary_from_frames_with_obj
+import frames_to_video
 
 
 def run():
@@ -31,7 +32,7 @@ def run():
         print('Error: Creating directory of data')
 
     # video broken to frames
-    video_to_frames.get_frames(original_video_location, location_to_store_all_frames)
+    video_to_frames_no_skipping.get_frames(original_video_location, location_to_store_all_frames)
 
     # shot boundaries are identified
     shot_boundaries = create_shot_boundaries.run(location_to_store_all_frames)
@@ -77,6 +78,15 @@ def run():
 
     print(
         "\n**************** Keyframes moved to the ./test_data/generated_summary_keyframes/ location ****************")
+
+    output_video_path = "./test_data/output_video/"
+    output_video_name = "output_video.avi"
+    fps = 8.0
+    frames_to_video.convert_frames_to_video(location_to_store_summary_keyframes, output_video_path, output_video_name, fps)
+
+    print(
+        "\n**************** summary video generated ./test_data/output_video/ location ****************")
+
     elapsed_time = datetime.datetime.now() - t1
     print("elapsed time is " + str(elapsed_time))
 
