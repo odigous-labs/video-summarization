@@ -84,6 +84,9 @@ def run():
     fps = 8.0
     frames_to_video.convert_frames_to_video(location_to_store_summary_keyframes, output_video_path, output_video_name, fps)
 
+    print("No. of keyframes: " + str(len(summary_frame_name_list)))
+    print("FPS of the output video: " + str(fps))
+
     print(
         "\n**************** summary video generated ./test_data/output_video/ location ****************")
 
