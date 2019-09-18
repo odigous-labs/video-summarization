@@ -13,8 +13,9 @@ def summary_from_frames_with_obj(frame_dic_with_objects):
                     new_obj = False
                     break
                 elif set(frames_with_max_obj[obj_frame_index]).issubset(set(frame)):
-                    redundant_frames.append(obj_frame_index)
-                    break
+                    if frames_with_max_obj[obj_frame_index] not in redundant_frames:
+                        redundant_frames.append(frames_with_max_obj[obj_frame_index])
+
             if new_obj:
                 frames_with_max_obj.append(frame)
 
@@ -23,14 +24,13 @@ def summary_from_frames_with_obj(frame_dic_with_objects):
                 if frame_name not in summary_frames:
                     summary_frames.append(frame_name)
 
-    # for index in range(len(frames_with_max_obj) - 1):
-    #     for j in range(index + 1, len(frames_with_max_obj)):
-    #         if set(frames_with_max_obj[index]).issubset(set(frames_with_max_obj[j])):
-    #             redundant_frames.append(index)
-
-    for redundant_index in redundant_frames:
+    for obj_set in redundant_frames:
+        redundant_index = frames_with_max_obj.index(obj_set)
         frames_with_max_obj.pop(redundant_index)
         summary_frames.pop(redundant_index)
+
+    for i in frames_with_max_obj:
+        print(i)
 
     return summary_frames
 

@@ -48,15 +48,18 @@ class YoloInferenceModel(object):
         output = self._inf_model.predict(image)[0]
 
         if output.size == 0:
-            list1 = []
-            return list1
+            return [], []
 
-
+        boxes = output[:, :4]
         label_idxs = output[:,5].astype(int)
 
         labels = [YoloParams.CLASS_LABELS[l] for l in label_idxs]
 
-        return labels
+        # if (boxes is None) and (labels is None):
+        #     boxes = []
+        #     labels = []
+
+        return boxes, labels
 
 
 
